@@ -1,0 +1,1519 @@
+import React, { useState } from "react";
+import { VscGrabber, VscClose } from "react-icons/vsc";
+import { Link } from "react-router-dom";
+import { logotext ,socialprofils } from "../content_option";
+import Themetoggle from "../animated/themetoggle";
+
+const Headermain = () => {
+  const [isActive, setActive] = useState("false");
+
+  const handleToggle = () => {
+    setActive(!isActive);
+    document.body.classList.toggle("ovhidden");
+  };
+
+  return (
+    <>
+      <header className="fixed-top site__header">
+        <div className="d-flex align-items-center justify-content-between">
+          <Link  className="navbar-brand nav_ac" to="/">
+            {logotext}
+          </Link>
+          <div className="d-flex align-items-center">
+          <Themetoggle />
+          <button className="menu__button  nav_ac" onClick={handleToggle}>
+            {!isActive ? <VscClose /> : <VscGrabber />}
+          </button>
+          
+          </div>
+        </div>
+
+        <div className={`site__navigation ${!isActive ? "menu__opend" : ""}`}>
+          <div className="bg__menu h-100">
+            <div className="menu__wrapper">
+              <div className="menu__container p-3">
+                <ul className="the_menu">
+                  <li className="menu_item ">
+                  <Link  onClick={handleToggle} to="/" className="my-3">Home</Link>
+                  </li>
+                  <li className="menu_item">
+                    <Link  onClick={handleToggle} to="/portfolio" className="my-3"> Portfolio</Link>
+                  </li>
+                  <li className="menu_item">
+                  <Link onClick={handleToggle} to="/about" className="my-3">About</Link>
+                  </li>
+                  <li className="menu_item">
+                  <Link onClick={handleToggle} to="/contact" className="my-3"> Contact</Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div className="menu_footer d-flex flex-column flex-md-row justify-content-between align-items-md-center position-absolute w-100 p-3">
+            <div className="d-flex">
+            <a href={socialprofils.facebook}>Facebook</a>
+            <a href={socialprofils.github}>Github</a>
+            <a href={socialprofils.twitter}>Twitter</a>
+            </div>
+            <p className="copyright m-0">copyright __ {logotext}</p>
+          </div>
+        </div>
+      </header>
+      <div className="br-top"></div>
+      <div className="br-bottom"></div>
+      <div className="br-left"></div>
+      <div className="br-right"></div>
+      
+    </>
+  );
+};
+
+export default Headermain;
+
+css
+.site__header {
+    top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.menu__button {
+    color: var(--text-color);
+}
+
+.menu__button:focus,
+.menu__button:hover {
+    color: var(--text-color);
+    box-shadow: unset;
+}
+
+.menu__button svg {
+    width: 2em;
+    height: 2em;
+    fill: var(--text-color-2);
+    color: var(--text-color-2);
+}
+
+.nav_ac {
+    padding: 5px 15px;
+    margin: 0;
+    border: unset;
+    background: var(--primary-color);
+    font-size: 1.25rem;
+    font-family: Marcellus;
+    color: var(--text-color-2);
+    line-height: 2;
+    height: 50px;
+    font-weight: bold;
+    z-index: 1000;
+}
+
+.nav_ac:hover {
+    color: var(--text-color-2);
+}
+
+.br-top,
+.br-bottom,
+.br-right,
+.br-left {
+    position: fixed;
+    z-index: 999999;
+    background: var(--primary-color);
+}
+
+.br-top {
+    top: 0;
+    height: 10px;
+    left: 0;
+    width: 100%;
+}
+
+.br-bottom {
+    bottom: 0;
+    left: 0;
+    height: 10px;
+    width: 100%;
+}
+
+.br-right {
+    width: 10px;
+    right: 0;
+    top: 0;
+    height: 100%;
+}
+
+.br-left {
+    width: 10px;
+    left: 0;
+    top: 0;
+    height: 100%;
+}
+
+.cortina__wrapper-menu {
+    position: relative;
+    width: 100%;
+    padding-top: 5em;
+    padding-bottom: 3em;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.site__navigation {
+    height: 100%;
+    left: 0;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    visibility: hidden;
+}
+
+.menu__opend {
+    visibility: visible !important;
+}
+
+.main__menu_ul,
+.menu_right {
+    opacity: 0;
+    position: relative;
+    transition: 0.5s;
+    transition-delay: 0s;
+    visibility: hidden;
+    z-index: 100;
+}
+
+.menu_right {
+    text-align: center;
+}
+
+.site__navigation.menu__opend .main__menu_ul,
+.site__navigation.menu__opend .menu_right {
+    opacity: 1;
+    transition-delay: 0.6s;
+    visibility: visible;
+}
+
+.site__navigation .main__menu_ul li {
+    list-style: none;
+    margin: 10px 0;
+}
+
+.site__navigation .main__menu_ul li a {
+    color: var(--text-color);
+    display: block;
+    font-size: 2.5rem;
+    text-decoration: none;
+}
+
+.bg__menu {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: var(--primary-color);
+    will-change: transform;
+    transform: translateY(-100%);
+    transition: .5s ease all;
+}
+
+.menu__opend .bg__menu {
+    transform: translateY(0);
+}
+
+.menu__wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden auto;
+}
+
+.the_menu {
+    padding-top: 20vh;
+    padding-bottom: 20vh;
+    padding-left: 0;
+}
+
+@media (min-width: 992px) {
+    .menu__container {
+        margin-left: 33.3333%;
+    }
+    .the_menu {
+        padding-top: 10vh;
+        padding-bottom: 10vh;
+    }
+}
+
+.the_menu .menu_item>a {
+    color: var(--text-color-2);
+    line-height: 1;
+    font-size: 2rem;
+    display: inline-block;
+    position: relative;
+    transition: color 250ms cubic-bezier(0, 0, 0.58, 1) 0s;
+    padding: 4px 0px;
+    text-decoration: none;
+    font-family: Marcellus;
+}
+
+.the_menu .menu_item>a:hover {
+    color: var(--text-color-3);
+}
+
+@media (min-width: 768px) {
+    .the_menu .menu_item>a {
+        font-size: 4.8vw;
+    }
+}
+
+.menu_footer {
+    bottom: 0;
+    font-family: Marcellus;
+    font-size: 14px;
+    background: var(--primary-color);
+}
+
+.menu_footer a {
+    color: var(--text-color-2);
+    margin-right: 10px;
+    text-decoration: none;
+}
+
+
+import React from "react";
+import "./style.css";
+import { Helmet, HelmetProvider } from "react-helmet-async";
+import { Container, Row, Col } from "react-bootstrap";
+import { dataabout,meta,skills } from "../../reportwebvital.js/content_option";
+
+export const About = () => {
+  return (
+    <HelmetProvider>
+      <Container className="About-header">
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title> About | {meta.title}</title>
+          <meta name="description" content={meta.description} />
+        </Helmet>
+        <Row className="mb-5 mt-3 pt-md-3">
+          <Col lg="8">
+            <h1 className="display-4 mb-4">About me</h1>
+            <hr className="t_border my-4 ml-0 text-left" />
+          </Col>
+        </Row>
+        <Row className="sec_sp">
+          <Col lg="5">
+            <h3 className="color_sec py-4">{dataabout.title}</h3>
+          </Col>
+          <Col lg="7" className="d-flex align-items-center">
+            <div>
+              <p>{dataabout.aboutme}</p>
+            </div>
+          </Col>
+        </Row>
+        <Row className="sec_sp">
+          <Col lg="5">
+            <h3 className="color_sec py-4">Skills</h3>
+          </Col>
+          <Col lg="7">
+            {skills.map((data, i) => {
+              return (
+                <div key={i}>
+                  <h3 className="progress-title">{data.name}</h3>
+                  <div className="progress">
+                    <div
+                      className="progress-bar"
+                      style={{
+                        width: `${data.value}%`,
+                      }}
+                    >
+                      <div className="progress-value">{data.value}%</div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </Col>
+        </Row>
+      </Container>
+    </HelmetProvider>
+  );
+};
+
+.sec_sp {
+    margin-bottom: calc(3rem + 5.128vw)
+}
+
+.table td,
+.table th {
+    color: var(--text-color);
+}
+
+.t_border {
+    border-color: var(--text-color) !important;
+}
+
+.progress-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 15px 0 20px;
+    font-family: 'Raleway';
+}
+
+.progress {
+    height: 5px;
+    background: var(--secondary);
+    border-radius: 0;
+    box-shadow: none;
+    margin-bottom: 30px;
+    overflow: visible;
+}
+
+.progress .progress-bar {
+    position: relative;
+    background: var(--text-color);
+    animation: animate-positive 2s;
+    overflow: visible;
+    opacity: 0.9;
+}
+
+.progress .progress-value {
+    position: absolute;
+    top: -30px;
+    right: 8px;
+    font-size: 17px;
+    font-weight: bold;
+    font-style: italic;
+    color: var(--text-color);
+}
+
+@-webkit-keyframes animate-positive {
+    0% {
+        width: 0%;
+    }
+}
+
+@keyframes animate-positive {
+    0% {
+        width: 0%;
+    }
+}
+
+.section-title {
+    font-size: 45px;
+}
+
+.service__title {
+    padding: 8px 0;
+    border-bottom: solid 2px var(--secondary-color);
+}
+
+.service-section .service-category-title {
+    padding-bottom: 4px;
+}
+
+
+/*! CSS Used keyframes */
+
+@-webkit-keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0);
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+    }
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0);
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+    }
+}
+
+import React, { useState } from "react";
+import * as emailjs from "emailjs-com";
+import "./style.css";
+import { Helmet, HelmetProvider } from "react-helmet-async";
+import { meta } from "../../content_option";
+import { Container, Row, Col, Alert } from "react-bootstrap";
+import { contactConfig } from "../../content_option";
+
+export const ContactUs = () => {
+  const [formData, setFormdata] = useState({
+    email: "",
+    name: "",
+    message: "",
+    loading: false,
+    show: false,
+    alertmessage: "",
+    variant: "",
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setFormdata({ loading: true });
+
+    const templateParams = {
+      from_name: formData.email,
+      user_name: formData.name,
+      to_name: contactConfig.YOUR_EMAIL,
+      message: formData.message,
+    };
+
+    emailjs
+      .send(
+        contactConfig.YOUR_SERVICE_ID,
+        contactConfig.YOUR_TEMPLATE_ID,
+        templateParams,
+        contactConfig.YOUR_USER_ID
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+          setFormdata({
+            loading: false,
+            alertmessage: "SUCCESS! ,Thankyou for your messege",
+            variant: "success",
+            show: true,
+          });
+        },
+        (error) => {
+          console.log(error.text);
+          setFormdata({
+            alertmessage: `Faild to send!,${error.text}`,
+            variant: "danger",
+            show: true,
+          });
+          document.getElementsByClassName("co_alert")[0].scrollIntoView();
+        }
+      );
+  };
+
+  const handleChange = (e) => {
+    setFormdata({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  return (
+    <HelmetProvider>
+      <Container>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>{meta.title} | Contact</title>
+          <meta name="description" content={meta.description} />
+        </Helmet>
+        <Row className="mb-5 mt-3 pt-md-3">
+          <Col lg="8">
+            <h1 className="display-4 mb-4">Contact Me</h1>
+            <hr className="t_border my-4 ml-0 text-left" />
+          </Col>
+        </Row>
+        <Row className="sec_sp">
+          <Col lg="12">
+            <Alert
+              //show={formData.show}
+              variant={formData.variant}
+              className={`rounded-0 co_alert ${
+                formData.show ? "d-block" : "d-none"
+              }`}
+              onClose={() => setFormdata({ show: false })}
+              dismissible
+            >
+              <p className="my-0">{formData.alertmessage}</p>
+            </Alert>
+          </Col>
+          <Col lg="5" className="mb-5">
+            <h3 className="color_sec py-4">Get in touch</h3>
+            <address>
+              <strong>Email:</strong>{" "}
+              <a href={`mailto:${contactConfig.YOUR_EMAIL}`}>
+                {contactConfig.YOUR_EMAIL}
+              </a>
+              <br />
+              <br />
+              {contactConfig.hasOwnProperty("YOUR_FONE") ? (
+                <p>
+                  <strong>Phone:</strong> {contactConfig.YOUR_FONE}
+                </p>
+              ) : (
+                ""
+              )}
+            </address>
+            <p>{contactConfig.description}</p>
+          </Col>
+          <Col lg="7" className="d-flex align-items-center">
+            <form onSubmit={handleSubmit} className="contact__form w-100">
+              <Row>
+                <Col lg="6" className="form-group">
+                  <input
+                    className="form-control"
+                    id="name"
+                    name="name"
+                    placeholder="Name"
+                    value={formData.name || ""}
+                    type="text"
+                    required
+                    onChange={handleChange}
+                  />
+                </Col>
+                <Col lg="6" className="form-group">
+                  <input
+                    className="form-control rounded-0"
+                    id="email"
+                    name="email"
+                    placeholder="Email"
+                    type="email"
+                    value={formData.email || ""}
+                    required
+                    onChange={handleChange}
+                  />
+                </Col>
+              </Row>
+              <textarea
+                className="form-control rounded-0"
+                id="message"
+                name="message"
+                placeholder="Message"
+                rows="5"
+                value={formData.message}
+                onChange={handleChange}
+                required
+              ></textarea>
+              <br />
+              <Row>
+                <Col lg="12" className="form-group">
+                  <button className="btn ac_btn" type="submit">
+                    {formData.loading ? "Sending..." : "Send"}
+                  </button>
+                </Col>
+              </Row>
+            </form>
+          </Col>
+        </Row>
+      </Container>
+      <div className={formData.loading ? "loading-bar" : "d-none"}></div>
+    </HelmetProvider>
+  );
+};
+
+.contact__form .form-control {
+    padding: 1.375rem .75rem;
+    line-height: 1.5;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    border-radius: 0 !important;
+    border: 1px solid var(--secondary-color);
+}
+
+.contact__form input.form-control {
+    margin-bottom: 2em;
+    height: calc(2.5em + .75rem + 2px);
+}
+
+button.btn.ac_btn:hover {
+    color: var(--secondary-color);
+}
+
+.loading-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    z-index: 999999999;
+    background: var(--text-color);
+    transform: translateX(100%);
+    animation: shift-rightwards 1s ease-in-out infinite;
+    animation-delay: .3s;
+}
+
+@keyframes shift-rightwards {
+    0% {
+        transform: translateX(-100%);
+    }
+    40% {
+        transform: translateX(0%);
+    }
+    60% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+
+import React from "react";
+import "./style.css";
+import { Helmet, HelmetProvider } from "react-helmet-async";
+import Typewriter from "typewriter-effect";
+import { introdata, meta } from "../../content_option";
+import { Link } from "react-router-dom";
+
+export const Home = () => {
+  return (
+    <HelmetProvider>
+      <section id="home" className="home">
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title> {meta.title}</title>
+          <meta name="description" content={meta.description} />
+        </Helmet>
+        <div className="intro_sec d-block d-lg-flex align-items-center ">
+          <div
+            className="h_bg-image order-1 order-lg-2 h-100 "
+            style={{ backgroundImage: `url(${introdata.your_img_url})` }}
+          ></div>
+          <div className="text order-2 order-lg-1 h-100 d-lg-flex justify-content-center">
+            <div className="align-self-center ">
+              <div className="intro mx-auto">
+                <h2 className="mb-1x">{introdata.title}</h2>
+                <h1 className="fluidz-48 mb-1x">
+                  <Typewriter
+                    options={{
+                      strings: [
+                        introdata.animated.first,
+                        introdata.animated.second,
+                        introdata.animated.third,
+                      ],
+                      autoStart: true,
+                      loop: true,
+                      deleteSpeed: 10,
+                    }}
+                  />
+                </h1>
+                <p className="mb-1x">{introdata.description}</p>
+                <div className="intro_btn-action pb-5">
+                  <Link to="/portfolio" className="text_2">
+                    <div id="button_p" className="ac_btn btn ">
+                      My Portfolio
+                      <div className="ring one"></div>
+                      <div className="ring two"></div>
+                      <div className="ring three"></div>
+                    </div>
+                  </Link>
+                  <Link to="/contact">
+                    <div id="button_h" className="ac_btn btn">
+                      Contact Me
+                      <div className="ring one"></div>
+                      <div className="ring two"></div>
+                      <div className="ring three"></div>
+                    </div>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </HelmetProvider>
+  );
+};
+
+section {
+    flex: 1 0 auto;
+    position: relative;
+    width: 100%;
+    -webkit-transition: all .5s ease-in;
+    -o-transition: all .5s ease-in;
+    transition: all .5s ease-in;
+}
+
+.who_am_I {
+    font-family: Cinzel;
+}
+
+.has-first-color {
+    color: var(--primary-color);
+}
+
+.btn-portfolio {
+    background: var(--primary-color);
+    border-radius: 0;
+}
+
+.btn-portfolio a {
+    color: #000;
+    text-decoration: none;
+}
+
+.btn-about a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.intro_sec {
+    height: calc(100vh - 60px);
+    min-height: 700px;
+    height: 100vh;
+    margin-top: -60px;
+}
+
+@media (max-width:991.98px) {
+    .intro_sec {
+        display: block;
+        height: auto!important;
+    }
+}
+
+.intro_sec .text,
+.intro_sec .h_bg-image {
+    width: 50%;
+}
+
+@media (max-width:991.98px) {
+    .intro_sec .text,
+    .intro_sec .h_bg-image {
+        width: 100%;
+    }
+}
+
+.intro_sec .intro {
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+@media (max-width:991.98px) {
+    .intro_sec .intro {
+        max-width: 700px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+.intro_sec .intro .feature .wrap-icon {
+    background: 0 0!important;
+    width: auto;
+    height: auto;
+    margin-bottom: 0;
+}
+
+.intro_sec .intro .feature .wrap-icon svg {
+    color: #5cccc9;
+}
+
+.intro_sec .text h1 {
+    font-size: 30px;
+    margin-bottom: 50px;
+    font-weight: 700;
+}
+
+.intro_sec .text h3 {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.intro_sec .h_bg-image {
+    background-size: cover;
+    background-position: center;
+    min-height: 700px;
+    position: relative;
+}
+
+.ac_btn {
+    padding: 4px 19px;
+    color: var(--secondary-color);
+    position: relative;
+    border: var(--secondary-color) 2px solid;
+    overflow: hidden;
+    transition: all 0.6s cubic-bezier(0.55, 0, 0.1, 1);
+    cursor: pointer;
+    border-radius: 0;
+    margin-right: 20px;
+}
+
+.ac_btn a {
+    text-decoration: none;
+}
+
+.ac_btn:hover {
+    box-shadow: 8px 8px 0px var(--text-color), -8px -8px 0px var(--text-color);
+}
+
+.ac_btn:hover .one {
+    opacity: 1;
+    transform: translate3d(0px, 0px, 0px);
+}
+
+.ac_btn:hover .two {
+    transform: translate3d(0px, 0px, 0px);
+}
+
+.ac_btn:hover .three {
+    transform: translate3d(0px, 0px, 0px);
+}
+
+.ac_btn:hover .four {
+    transform: translate3d(0px, 0px, 0px);
+}
+
+.ac_btn .ring {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: transparent;
+    top: 0;
+    left: 0;
+    transform: translate3d(0px, 90px, 0px);
+}
+
+.ac_btn .one {
+    background-color: #000;
+    transition: all 0.3s cubic-bezier(0.55, 0, 0.1, 1);
+    z-index: -3;
+    z-index: -4;
+}
+
+.ac_btn .two {
+    background-color: var(--primary-color);
+    transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
+    z-index: -3;
+}
+
+.ac_btn .three {
+    background-color: var(--secondary-color);
+    z-index: -2;
+    transition: all 0.7s cubic-bezier(0.55, 0, 0.1, 1);
+    z-index: -3;
+}
+
+#button_p {
+    background: var(--secondary-color);
+    color: var(--primary-color);
+}
+
+#button_h:hover {
+    color: var(--primary-color)
+}
+
+.intro_sec .h_bg-image .block {
+    bottom: 50vh;
+    max-width: 220px;
+    padding: 30px;
+    left: -110px;
+    position: absolute;
+    width: 250px;
+    height: 220px;
+    border-radius: 100%;
+    /* mix-blend-mode: multiply; */
+    background-color: #2f514e;
+    z-index: 9999999999;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+@media (max-width:991.98px) {
+    .intro_sec .h_bg-image {
+        height: 600px;
+        min-height: 75vh;
+        margin-bottom: 30px;
+    }
+    .intro_sec .h_bg-image .block {
+        top: unset;
+        bottom: 0;
+        width: 100%;
+        margin: 0;
+        left: 50%;
+        transform: translate(-50%, 50%);
+    }
+}
+
+.intro_sec .h_bg-image .block .wrap-icon {
+    font-size: 40px;
+    color: var(--text-color);
+    margin-bottom: 10px;
+    display: block;
+}
+
+.intro_sec .h_bg-image .block h3 {
+    font-size: 14px;
+    color: var(--text-color);
+    letter-spacing: .1rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.intro_sec .h_bg-image .block p {
+    font-size: 14px;
+    line-height: 1.3;
+    color: var(--text-color)
+}
+
+.intro_sec .h_bg-image {
+    filter: saturate(0.5);
+}
+
+const logotext = "JOHN";
+const meta = {
+    title: "John Doe",
+    description: "I’m John Doe data scientist _ Full stack devloper,currently working in Berlin",
+};
+
+const introdata = {
+    title: "I’m John Doe",
+    animated: {
+        first: "I love coding",
+        second: "I code cool websites",
+        third: "I develop mobile apps",
+    },
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at nisl euismod urna bibendum",
+    your_img_url: "https://images.unsplash.com/photo-1514790193030-c89d266d5a9d",
+};
+
+const dataabout = {
+    title: "abit about my self",
+    aboutme: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis dolor id ligula semper elementum feugiat pretium nulla. Nunc non commodo dolor. Nunc mollis dignissim facilisis. Morbi ut magna ultricies.",
+};
+const worktimeline = [{
+        jobtitle: "Designer of week",
+        where: "YAdfi",
+        date: "2020",
+    },
+    {
+        jobtitle: "Designer of week",
+        where: "Jamalya",
+        date: "2019",
+    },
+    {
+        jobtitle: "Designer of week",
+        where: "ALquds",
+        date: "2019",
+    },
+];
+
+const skills = [{
+        name: "Python",
+        value: 90,
+    },
+    {
+        name: "Djano",
+        value: 85,
+    },
+    {
+        name: "Javascript",
+        value: 80,
+    },
+    {
+        name: "React",
+        value: 60,
+    },
+    {
+        name: "Jquery",
+        value: 85,
+    },
+];
+
+const services = [{
+        title: "UI & UX Design",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at nisl euismod urna bibendum sollicitudin.",
+    },
+    {
+        title: "Mobile Apps",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at nisl euismod urna bibendum sollicitudin.",
+    },
+    {
+        title: "Wordpress Design",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at nisl euismod urna bibendum sollicitudin.",
+    },
+];
+
+const dataportfolio = [{
+        img: "https://picsum.photos/400/?grayscale",
+        description: "The wisdom of life consists in the elimination of non-essentials.",
+        link: "#",
+    },
+    {
+        img: "https://picsum.photos/400/800/?grayscale",
+        description: "The wisdom of life consists in the elimination of non-essentials.",
+        link: "#",
+    },
+    {
+        img: "https://picsum.photos/400/?grayscale",
+        description: "The wisdom of life consists in the elimination of non-essentials.",
+        link: "#",
+    },
+    {
+        img: "https://picsum.photos/400/600/?grayscale",
+        description: "The wisdom of life consists in the elimination of non-essentials.",
+        link: "#",
+    },
+    {
+        img: "https://picsum.photos/400/300/?grayscale",
+        description: "The wisdom of life consists in the elimination of non-essentials.",
+        link: "#",
+    },
+    {
+        img: "https://picsum.photos/400/700/?grayscale",
+        description: "The wisdom of life consists in the elimination of non-essentials.",
+        link: "#",
+    },
+
+    {
+        img: "https://picsum.photos/400/600/?grayscale",
+        description: "The wisdom of life consists in the elimination of non-essentials.",
+        link: "#",
+    },
+    {
+        img: "https://picsum.photos/400/300/?grayscale",
+        description: "The wisdom of life consists in the elimination of non-essentials.",
+        link: "#",
+    },
+    {
+        img: "https://picsum.photos/400/?grayscale",
+        description: "The wisdom of life consists in the elimination of non-essentials.",
+        link: "#",
+    },
+    {
+        img: "https://picsum.photos/400/550/?grayscale",
+        description: "The wisdom of life consists in the elimination of non-essentials.",
+        link: "#",
+    },
+    {
+        img: "https://picsum.photos/400/?grayscale",
+        description: "The wisdom of life consists in the elimination of non-essentials.",
+        link: "#",
+    },
+    {
+        img: "https://picsum.photos/400/700/?grayscale",
+        description: "The wisdom of life consists in the elimination of non-essentials.",
+        link: "#",
+    },
+];
+
+const contactConfig = {
+    YOUR_EMAIL: "name@domain.com",
+    YOUR_FONE: "(555)123-4567",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vehicula eu nunc et sollicitudin. Cras pulvinar, nisi at imperdiet pharetra. ",
+    // creat an emailjs.com account 
+    // check out this tutorial https://www.emailjs.com/docs/examples/reactjs/
+    YOUR_SERVICE_ID: "service_id",
+    YOUR_TEMPLATE_ID: "template_id",
+    YOUR_USER_ID: "user_id",
+};
+
+const socialprofils = {
+    github: "https://github.com",
+    facebook: "https://facebook.com",
+    linkedin: "https://linkedin.com",
+    twitter: "https://twitter.com",
+};
+export {
+    meta,
+    dataabout,
+    dataportfolio,
+    worktimeline,
+    skills,
+    services,
+    introdata,
+    contactConfig,
+    socialprofils,
+    logotext,
+};
+
+import React from "react";
+import "./style.css";
+import { Helmet, HelmetProvider } from "react-helmet-async";
+import { Container, Row, Col } from "react-bootstrap";
+import { dataportfolio, meta } from "../../content_option";
+
+export const Portfolio = () => {
+  return (
+    <HelmetProvider>
+      <Container className="About-header">
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title> Portfolio | {meta.title} </title>{" "}
+          <meta name="description" content={meta.description} />
+        </Helmet>
+        <Row className="mb-5 mt-3 pt-md-3">
+          <Col lg="8">
+            <h1 className="display-4 mb-4"> Portfolio </h1>{" "}
+            <hr className="t_border my-4 ml-0 text-left" />
+          </Col>
+        </Row>
+        <div className="mb-5 po_items_ho">
+          {dataportfolio.map((data, i) => {
+            return (
+              <div key={i} className="po_item">
+                <img src={data.img} alt="" />
+                <div className="content">
+                  <p>{data.description}</p>
+                  <a href={data.link}>view project</a>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </Container>
+    </HelmetProvider>
+  );
+};
+
+.po_items_ho {
+    column-width: 15em;
+    -moz-column-width: 15em;
+    -webkit-column-width: 15em;
+    column-gap: 4rem;
+    -moz-column-gap: 4rem;
+    -webkit-column-gap: 4rem;
+}
+
+.po_item {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    margin: 0.5rem auto;
+    position: relative;
+    background: var(--secondary-color);
+    padding: 6px;
+    border: 1px solid var(--secondary-color);
+    transition: 0.3s ease;
+    font-size: 0;
+    min-height: 300px;
+}
+
+.po_item img {
+    max-width: 100%;
+}
+
+.po_item .content {
+    position: absolute;
+    height: 0;
+    width: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--overlay-color);
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    transition: 0.3s ease-in-out;
+    opacity: 0;
+    border: 1px solid black;
+}
+
+.po_item .content {
+    opacity: 0;
+    transition-delay: 1s;
+    transition: 0.3s ease;
+    font-size: 20px;
+}
+
+.po_item:hover {
+    box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.25);
+}
+
+.po_item:hover .content {
+    height: calc(100% - 30px);
+    width: calc(100% - 30px);
+    opacity: 1;
+}
+
+.po_item:hover .content {
+    opacity: 1;
+    color: var(--secondary-color);
+}
+
+.po_item .content a {
+    background: var(--bg-color);
+    border: solid 1px var(--text-color);
+    padding: 4px 8px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.po_item .content a:hover {
+    text-decoration: none;
+}
+
+const logotext = "Anjali";
+const meta = {
+    title: "Anjali",
+    description: "I m Anjali Full stack devloper,currently i m  student",
+};
+
+const introdata = {
+    title: "I m Anjali ",
+    animated: {
+        first: "I love coding",
+        second: "I code cool websites",
+    },
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at nisl euismod urna bibendum",
+    your_img_url: "https://images.unsplash.com/photo-1514790193030-c89d266d5a9d",
+};
+
+const dataabout = {
+    title: "abit about my self",
+    aboutme: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis dolor id ligula semper elementum feugiat pretium nulla. Nunc non commodo dolor. Nunc mollis dignissim facilisis. Morbi ut magna ultricies.",
+};
+
+const skills = [{
+        name: "Python",
+        value: 90,
+    },
+    {
+        name: "Javascript",
+        value: 80,
+    },
+    {
+        name:"html",
+        value:90,
+    },
+  
+];
+
+
+const contactConfig = {
+    YOUR_EMAIL: "name@domain.com",
+    YOUR_FONE: "(555)123-4567",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vehicula eu nunc et sollicitudin. Cras pulvinar, nisi at imperdiet pharetra. ",
+    // creat an emailjs.com account 
+    // check out this tutorial https://www.emailjs.com/docs/examples/reactjs/
+    YOUR_SERVICE_ID: "service_id",
+    YOUR_TEMPLATE_ID: "template_id",
+    YOUR_USER_ID: "user_id",
+};
+
+const socialprofils = {
+    github: "https://github.com",
+    facebook: "https://facebook.com",
+    linkedin: "https://linkedin.com",
+    twitter: "https://twitter.com",
+};
+export {
+    meta,
+    dataabout,
+    skills,
+    introdata,
+    contactConfig,
+    socialprofils,
+    logotext,
+};
+
+const reportWebVitals = onPerfEntry => {
+    if (onPerfEntry && onPerfEntry instanceof Function) {
+      import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
+        getCLS(onPerfEntry);
+        getFID(onPerfEntry);
+        getFCP(onPerfEntry);
+        getLCP(onPerfEntry);
+        getTTFB(onPerfEntry);
+      });
+    }
+  };
+  
+  export default reportWebVitals;
+
+:root {
+    --bg-color: #0c0c0c;
+    --primary-color: #0d0d0d;
+    --secondary-color: #fff;
+    --text-color: #fff;
+    --text-color-2: #fff;
+    --text-color-3: rgb(204, 0, 0);
+    --overlay-color: rgb(12 12 12 / 63%);
+}
+
+[data-theme="light"] {
+    --bg-color: #ffffff;
+    --primary-color: #ffffff;
+    --secondary-color: #000;
+    --text-color: #000;
+    --text-color-2: #000;
+    --text-color-3: rgb(204, 0, 0);
+    --overlay-color: rgb(255 255 255 / 70%);
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: visible;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Raleway', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    padding-top: 60px;
+    border-left: 10px solid var(--primary-color);
+    border-right: 10px solid var(--primary-color);
+}
+
+ul {
+    list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: Marcellus;
+}
+
+a,
+a:hover {
+    color: var(--text-color);
+}
+
+p {
+    word-break: break-word;
+    hyphens: auto;
+}
+
+.ovhidden {
+    overflow: hidden;
+}
+
+.text_2,
+.text_2:hover {
+    color: var(--text-color-2);
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+.cursor__dot div {
+    z-index: 999999 !important;
+}
+
+.cursor__dot div:last-child {
+    background-color: var(--text-color-3) !important;
+}
+
+.cursor__dot div:first-child {
+    filter: invert(1);
+    background-color: var(--overlay-color) !important;
+}
+
+.color_pr {
+    color: var(--primary-color) !important;
+}
+
+.color_sec {
+    color: var(--secondary-color);
+}
+
+
+import React from 'react';
+import ReactDOM from "react-dom/client";
+import App from './app/App';
+import './index.css';
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+    <App />
+);
+
+.stick_follow_icon {
+    top: 50%;
+    left: 30px;
+    width: 20px;
+    height: 200px;
+    position: fixed;
+    margin-top: -100px;
+}
+
+.stick_follow_icon ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.stick_follow_icon svg {
+    width: 1.3em;
+    height: 1.3em;
+    fill: var(--text-color)
+}
+
+.stick_follow_icon p {
+    top: 70px;
+    left: -24px;
+    width: 68px;
+    height: 20px;
+    color: var(--text-color);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.2;
+    white-space: nowrap;
+    position: relative;
+    transform: rotate( -90deg);
+}
+
+.stick_follow_icon ul li {
+    display: block;
+    font-size: 12px;
+    text-align: center;
+    margin-bottom: 10px;
+    transition: all .3s;
+}
+
+.stick_follow_icon p:after {
+    top: 9px;
+    right: -48px;
+    width: 40px;
+    height: 1px;
+    content: "";
+    display: block;
+    position: absolute;
+    background-color: var(--text-color);
+}
+
+@media only screen and (max-width: 991px) {
+    .stick_follow_icon {
+        width: unset;
+        height: unset;
+        position: static;
+        margin-top: unset;
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: center;
+        padding: 40px 0;
+        align-items: center;
+    }
+    .stick_follow_icon p {
+        top: unset;
+        left: unset;
+        width: unset;
+        height: unset;
+        white-space: nowrap;
+        position: relative;
+        transform: unset;
+        font-size: 17px;
+        margin-right: 65px;
+    }
+    .stick_follow_icon ul {
+        margin-bottom: 20px;
+    }
+    .stick_follow_icon ul li {
+        display: inline;
+        margin-bottom: 29px;
+        margin-right: 10px;
+    }
+}
